@@ -1,0 +1,1819 @@
+/* =========================================
+   01. GOOGLE FONTS & ROOT
+========================================= */
+
+:root {
+  --blush: #f8e9ec;
+  --dusty-rose: #e8c5cf;
+  --ivory: #fff9f5;
+  --rosewood: #a65d73;
+  --burgundy: #633b4b;
+  --soft-pink: #fceff2;
+  --white: #ffffff;
+  --text: #604653;
+  --muted: #a98b96;
+
+  --font-heading: "Playfair Display", serif;
+  --font-body: "DM Sans", sans-serif;
+
+  --shadow-soft: 0 12px 35px rgba(166, 93, 115, 0.12);
+  --shadow-card: 0 8px 25px rgba(99, 59, 75, 0.09);
+
+  --radius-lg: 28px;
+  --radius-md: 18px;
+
+  --transition: 0.35s ease;
+}
+
+/* =========================================
+   02. RESET & GLOBAL
+========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 30px;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--ivory);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+body,
+button,
+input {
+  font-family: var(--font-body);
+}
+
+button {
+  border: none;
+  cursor: pointer;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+section {
+  position: relative;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+::selection {
+  background: var(--dusty-rose);
+  color: var(--burgundy);
+}
+
+/* =========================================
+   03. REUSABLE COMPONENTS
+========================================= */
+
+.section {
+  padding: 110px 8%;
+}
+
+.section-heading {
+  max-width: 650px;
+  margin: 0 auto 55px;
+  text-align: center;
+}
+
+.section-label {
+  display: inline-block;
+  color: var(--rosewood);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.section-heading h2 {
+  font-family: var(--font-heading);
+  color: var(--burgundy);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.section-heading h2 span {
+  color: var(--rosewood);
+}
+
+.section-heading p {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.primary-button,
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 30px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.primary-button {
+  background: var(--rosewood);
+  color: var(--white);
+  box-shadow: 0 7px 20px rgba(166, 93, 115, 0.2);
+}
+
+.primary-button:hover {
+  background: var(--burgundy);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(99, 59, 75, 0.2);
+}
+
+.secondary-button {
+  background: var(--soft-pink);
+  color: var(--rosewood);
+  border: 1px solid var(--dusty-rose);
+}
+
+.secondary-button:hover {
+  background: var(--dusty-rose);
+  transform: translateY(-3px);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--rosewood);
+  outline-offset: 4px;
+}
+
+/* =========================================
+   04. WELCOME SCREEN
+========================================= */
+
+.welcome-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 20%, #ffffff 0, transparent 30%),
+    linear-gradient(135deg, #fceff2, #f5dde4);
+  transition:
+    opacity 0.8s ease,
+    visibility 0.8s ease;
+}
+
+.welcome-screen.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.welcome-content {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  max-width: 550px;
+  text-align: center;
+}
+
+.welcome-subtitle {
+  color: var(--rosewood);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+.welcome-content h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 6vw, 3.7rem);
+  line-height: 1.2;
+  font-weight: 500;
+  color: var(--burgundy);
+  margin: 25px 0 15px;
+}
+
+.welcome-description {
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.welcome-envelope {
+  display: flex;
+  justify-content: center;
+  perspective: 800px;
+}
+
+.envelope {
+  position: relative;
+  width: 155px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #dfaab9;
+  border-radius: 8px;
+  box-shadow: 0 15px 30px rgba(166, 93, 115, 0.2);
+  animation: envelopeFloat 3s ease-in-out infinite;
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-left: 77px solid transparent;
+  border-right: 77px solid transparent;
+  border-top: 65px solid #ebc4cf;
+  transform-origin: top;
+  z-index: 2;
+}
+
+.envelope-heart {
+  position: relative;
+  z-index: 3;
+  color: var(--white);
+  font-size: 2rem;
+  margin-top: 15px;
+}
+
+.envelope-ribbon {
+  position: absolute;
+  right: -16px;
+  top: -22px;
+  color: var(--rosewood);
+  font-size: 2rem;
+  z-index: 4;
+}
+
+.welcome-decoration .decoration {
+  position: absolute;
+  color: rgba(166, 93, 115, 0.25);
+  font-size: 3rem;
+  animation: decorationFloat 4s ease-in-out infinite;
+}
+
+.decoration-one {
+  top: 15%;
+  left: 12%;
+}
+
+.decoration-two {
+  bottom: 15%;
+  left: 15%;
+  animation-delay: 1s !important;
+}
+
+.decoration-three {
+  right: 12%;
+  top: 25%;
+  animation-delay: 2s !important;
+}
+
+@keyframes envelopeFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(2deg);
+  }
+}
+
+@keyframes decorationFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* =========================================
+   05. MAIN CONTENT
+========================================= */
+
+.main-content {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease;
+}
+
+.main-content.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* =========================================
+   06. HERO SECTION
+========================================= */
+
+.hero-section {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--blush);
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(54, 27, 40, 0.25),
+    rgba(54, 27, 40, 0.65)
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  color: var(--white);
+}
+
+.hero-label {
+  display: inline-block;
+  padding: 9px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.hero-content h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  line-height: 1.15;
+  font-weight: 500;
+  margin: 25px 0;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.recipient-name {
+  font-style: italic;
+  color: #ffdde6;
+}
+
+.hero-description {
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.05rem;
+}
+
+.hero-content .primary-button {
+  background: var(--white);
+  color: var(--rosewood);
+}
+
+.hero-decoration {
+  position: absolute;
+  bottom: 35px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 2rem;
+}
+
+/* =========================================
+   07. BIRTHDAY MESSAGE
+========================================= */
+
+.message-section {
+  background: var(--ivory);
+}
+
+.message-card {
+  position: relative;
+  max-width: 800px;
+  margin: auto;
+  padding: 55px 65px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+    repeating-linear-gradient(
+      transparent 0,
+      transparent 34px,
+      rgba(232, 197, 207, 0.4) 35px
+    );
+  border: 1px solid var(--dusty-rose);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.message-decoration {
+  position: absolute;
+  right: 25px;
+  top: 15px;
+  font-size: 2.5rem;
+  color: var(--dusty-rose);
+}
+
+.message-greeting {
+  font-family: var(--font-heading);
+  font-size: 1.7rem;
+  color: var(--rosewood);
+  margin-bottom: 25px;
+}
+
+.birthday-message {
+  line-height: 2;
+  white-space: pre-line;
+  color: var(--text);
+}
+
+.message-ending {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--rosewood);
+  margin-top: 30px;
+  font-size: 1.2rem;
+}
+
+/* =========================================
+   08. SCRAPBOOK GALLERY
+========================================= */
+
+.gallery-section {
+  background: var(--soft-pink);
+  overflow: hidden;
+}
+
+.scrapbook-gallery {
+  max-width: 1050px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  align-items: center;
+}
+
+.polaroid {
+  position: relative;
+  padding: 12px 12px 35px;
+  background: var(--white);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+  cursor: pointer;
+}
+
+.polaroid:nth-child(1) {
+  transform: rotate(-4deg);
+}
+
+.polaroid:nth-child(2) {
+  transform: rotate(3deg);
+  margin-top: 40px;
+}
+
+.polaroid:nth-child(3) {
+  transform: rotate(-2deg);
+}
+
+.polaroid:nth-child(4) {
+  transform: rotate(3deg);
+  margin-top: 30px;
+}
+
+.polaroid:nth-child(5) {
+  transform: rotate(-3deg);
+}
+
+.polaroid:nth-child(6) {
+  transform: rotate(4deg);
+  margin-top: 25px;
+}
+
+.polaroid:hover {
+  transform: translateY(-12px) rotate(0deg) scale(1.04);
+  z-index: 3;
+  box-shadow: 0 18px 35px rgba(99, 59, 75, 0.16);
+}
+
+.polaroid-image {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--blush);
+}
+
+.polaroid-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.polaroid:hover img {
+  transform: scale(1.08);
+}
+
+.polaroid p {
+  position: absolute;
+  bottom: 7px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--rosewood);
+}
+
+.gallery-note {
+  text-align: center;
+  margin-top: 55px;
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--rosewood);
+}
+
+/* =========================================
+   09. ALL ABOUT YOU - FLIP CARDS
+========================================= */
+
+.about-section {
+  background: var(--ivory);
+}
+
+.flip-card-container {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.flip-card {
+  height: 260px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner,
+.flip-card:focus .flip-card-inner,
+.flip-card.active .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  border-radius: var(--radius-lg);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+}
+
+.flip-card-front {
+  background: linear-gradient(145deg, #fceff2, #f3d9e1);
+  border: 1px solid var(--dusty-rose);
+}
+
+.card-icon {
+  color: var(--rosewood);
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+}
+
+.flip-card-front h3,
+.flip-card-back p {
+  font-family: var(--font-heading);
+  color: var(--burgundy);
+  font-size: 1.3rem;
+}
+
+.flip-card-front p {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  background: var(--rosewood);
+  color: var(--white);
+}
+
+.flip-card-back p {
+  color: var(--white);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+/* =========================================
+   10. LITTLE QUIZ
+========================================= */
+
+.quiz-section {
+  background: var(--soft-pink);
+}
+
+.quiz-card {
+  max-width: 650px;
+  margin: auto;
+  padding: 40px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.quiz-progress {
+  margin-bottom: 35px;
+}
+
+.quiz-progress span {
+  display: block;
+  color: var(--rosewood);
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.quiz-progress-track {
+  height: 8px;
+  background: var(--blush);
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.quiz-progress-fill {
+  height: 100%;
+  width: 20%;
+  background: var(--rosewood);
+  border-radius: 50px;
+  transition: width 0.4s ease;
+}
+
+.quiz-content h3 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--burgundy);
+  margin-bottom: 25px;
+}
+
+.quiz-options {
+  display: grid;
+  gap: 12px;
+}
+
+.quiz-option {
+  padding: 16px 20px;
+  border-radius: 14px;
+  background: var(--soft-pink);
+  color: var(--text);
+  text-align: left;
+  border: 1px solid transparent;
+  transition: var(--transition);
+  font-size: 0.9rem;
+}
+
+.quiz-option:hover {
+  border-color: var(--rosewood);
+  background: var(--blush);
+  transform: translateX(5px);
+}
+
+.quiz-option.selected {
+  background: var(--dusty-rose);
+  border-color: var(--rosewood);
+}
+
+.quiz-option.correct {
+  background: #e5f2e8;
+  border-color: #7ba989;
+}
+
+.quiz-option.wrong {
+  background: #f9e1e4;
+  border-color: #d88a9b;
+}
+
+.quiz-feedback {
+  margin: 20px 0;
+  color: var(--rosewood);
+  font-weight: 600;
+  min-height: 25px;
+}
+
+.quiz-next-button {
+  margin-top: 10px;
+}
+
+.quiz-result {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.result-icon {
+  font-size: 3rem;
+}
+
+.quiz-result h3 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--burgundy);
+  margin: 15px 0;
+}
+
+.quiz-result p {
+  margin: 12px 0;
+  color: var(--muted);
+}
+
+.quiz-result button {
+  margin-top: 20px;
+}
+
+/* =========================================
+   11. MAKE A WISH - BIRTHDAY CAKE
+========================================= */
+
+.cake-section {
+  background: var(--ivory);
+  text-align: center;
+}
+
+.cake-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.birthday-cake {
+  position: relative;
+  width: 270px;
+  height: 270px;
+  margin: 30px 0 45px;
+}
+
+.cake-bottom,
+.cake-middle,
+.cake-top {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 15px 15px 10px 10px;
+}
+
+.cake-bottom {
+  bottom: 15px;
+  width: 250px;
+  height: 85px;
+  background: #d88a9b;
+  border-bottom: 10px solid #b96c80;
+}
+
+.cake-middle {
+  bottom: 95px;
+  width: 215px;
+  height: 65px;
+  background: #f0c4d0;
+  border-bottom: 8px solid #dda1b2;
+}
+
+.cake-top {
+  bottom: 155px;
+  width: 180px;
+  height: 35px;
+  background: #fff0f3;
+  border-radius: 50%;
+  border-bottom: 5px solid #ebc0cb;
+}
+
+.cake-top::before {
+  content: "♡  ♡  ♡";
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--rosewood);
+  font-size: 1rem;
+}
+
+.cake-candles {
+  position: absolute;
+  z-index: 5;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 35px;
+}
+
+.candle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.candle-stick {
+  width: 9px;
+  height: 75px;
+  border-radius: 5px;
+  background: repeating-linear-gradient(
+    45deg,
+    #ffffff,
+    #ffffff 5px,
+    #e8a6b7 5px,
+    #e8a6b7 10px
+  );
+}
+
+.flame {
+  width: 15px;
+  height: 24px;
+  background: linear-gradient(#fff2a5, #ffa23d);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 0 18px #ffca70;
+  animation: flameFlicker 0.5s ease-in-out infinite alternate;
+  margin-bottom: 5px;
+  transform-origin: bottom;
+}
+
+@keyframes flameFlicker {
+  from {
+    transform: rotate(-45deg) scale(1);
+  }
+
+  to {
+    transform: rotate(-40deg) scale(1.12);
+  }
+}
+
+.cake-message {
+  margin-top: 25px;
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--rosewood);
+  font-size: 1.5rem;
+}
+
+/* =========================================
+   12. FORTUNE COOKIE
+========================================= */
+
+.fortune-section {
+  background: var(--soft-pink);
+  text-align: center;
+}
+
+.fortune-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fortune-cookie {
+  width: 130px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition);
+}
+
+.fortune-cookie span {
+  font-size: 5rem;
+}
+
+.fortune-cookie:hover {
+  transform: rotate(-12deg) scale(1.1);
+}
+
+.fortune-instruction {
+  margin-top: 25px;
+  color: var(--muted);
+}
+
+.fortune-message {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 30px;
+  background: var(--white);
+  border: 1px dashed var(--dusty-rose);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  animation: fadeIn 0.5s ease;
+}
+
+.fortune-message span {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rosewood);
+}
+
+.fortune-message p {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--burgundy);
+  margin-top: 15px;
+}
+
+/* =========================================
+   13. A LETTER FOR YOU
+========================================= */
+
+.letter-section {
+  background: var(--ivory);
+  text-align: center;
+}
+
+.letter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.letter-envelope {
+  position: relative;
+  width: min(500px, 90%);
+  height: 310px;
+  margin: 25px auto 40px;
+  background: #e9bbc8;
+  border-radius: 10px;
+  box-shadow: var(--shadow-soft);
+  perspective: 1000px;
+}
+
+.letter-envelope-front {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e8c0cc;
+  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+  transition: opacity 0.5s ease;
+}
+
+.letter-envelope-front span {
+  position: absolute;
+  bottom: 35px;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--rosewood);
+}
+
+.letter-paper {
+  position: absolute;
+  left: 5%;
+  top: 10px;
+  width: 90%;
+  height: 280px;
+  overflow-y: auto;
+  padding: 25px;
+  background: #fffdf9;
+  border-radius: 5px;
+  text-align: left;
+  transition: transform 0.8s ease;
+  z-index: 2;
+}
+
+.letter-date {
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 2px;
+}
+
+.letter-paper h3 {
+  font-family: var(--font-heading);
+  color: var(--rosewood);
+  margin: 12px 0;
+}
+
+.letter-content p {
+  font-size: 0.85rem;
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+
+.letter-ending {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--rosewood);
+}
+
+.letter-envelope.open .letter-paper {
+  transform: translateY(-180px);
+  z-index: 4;
+}
+
+.letter-envelope.open .letter-envelope-front {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* =========================================
+   14. SECRET MESSAGE
+========================================= */
+
+.secret-section {
+  background: var(--soft-pink);
+  text-align: center;
+}
+
+.secret-card {
+  max-width: 600px;
+  margin: auto;
+  padding: 45px;
+  background: var(--white);
+  border: 1px solid var(--dusty-rose);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+.secret-lock {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+}
+
+.secret-form h3,
+.secret-content h3 {
+  font-family: var(--font-heading);
+  color: var(--burgundy);
+  font-size: 1.7rem;
+  margin-bottom: 12px;
+}
+
+.secret-form p {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.secret-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.secret-form input {
+  width: 100%;
+  padding: 15px 20px;
+  border: 1px solid var(--dusty-rose);
+  border-radius: 50px;
+  background: var(--ivory);
+  color: var(--text);
+  text-align: center;
+  outline: none;
+  transition: var(--transition);
+}
+
+.secret-form input:focus {
+  border-color: var(--rosewood);
+  box-shadow: 0 0 0 4px rgba(166, 93, 115, 0.1);
+}
+
+.secret-feedback {
+  margin-top: 15px;
+  color: var(--rosewood);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.secret-content {
+  animation: fadeIn 0.8s ease;
+}
+
+.secret-unlocked-icon {
+  display: block;
+  color: var(--rosewood);
+  font-size: 3.5rem;
+  margin-bottom: 15px;
+}
+
+.secret-content p {
+  line-height: 1.9;
+  margin-top: 15px;
+}
+
+.secret-ending {
+  color: var(--rosewood);
+  font-family: var(--font-heading);
+  font-style: italic;
+}
+
+/* =========================================
+   15. FINAL SURPRISE
+========================================= */
+
+.final-section {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  background: linear-gradient(135deg, #fceff2, #f3d9e1);
+}
+
+.final-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+
+.final-content h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  color: var(--burgundy);
+  line-height: 1.2;
+  margin: 20px 0;
+}
+
+.final-content p {
+  color: var(--text);
+  margin-bottom: 18px;
+}
+
+.final-message {
+  font-family: var(--font-heading);
+  font-style: italic;
+  color: var(--rosewood) !important;
+  font-size: 1.1rem;
+}
+
+.final-heart {
+  font-size: 4rem;
+  color: var(--rosewood);
+  margin: 20px 0;
+  animation: heartBeat 1.5s infinite;
+}
+
+.final-decoration span {
+  position: absolute;
+  color: rgba(166, 93, 115, 0.2);
+  font-size: 3rem;
+  animation: decorationFloat 4s ease-in-out infinite;
+}
+
+.final-decoration span:nth-child(1) {
+  top: 15%;
+  left: 10%;
+}
+
+.final-decoration span:nth-child(2) {
+  top: 20%;
+  right: 12%;
+}
+
+.final-decoration span:nth-child(3) {
+  bottom: 15%;
+  left: 15%;
+}
+
+.final-decoration span:nth-child(4) {
+  bottom: 20%;
+  right: 10%;
+}
+
+@keyframes heartBeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* =========================================
+   16. FOOTER
+========================================= */
+
+.footer {
+  padding: 30px 20px;
+  background: var(--burgundy);
+  text-align: center;
+  color: var(--white);
+}
+
+.footer p {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.footer span {
+  display: block;
+  margin-top: 5px;
+  color: var(--dusty-rose);
+}
+
+/* =========================================
+   17. MUSIC PLAYER
+========================================= */
+
+.music-player {
+  position: fixed;
+  z-index: 100;
+  left: 25px;
+  bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: min(360px, calc(100% - 30px));
+  padding: 12px 15px;
+  background: rgba(255, 249, 245, 0.94);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--dusty-rose);
+  border-radius: 50px;
+  box-shadow: var(--shadow-soft);
+}
+
+.music-toggle {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--rosewood);
+  color: var(--white);
+  font-size: 1.2rem;
+}
+
+.music-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.music-title {
+  display: block;
+  color: var(--burgundy);
+  font-size: 0.7rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.music-progress-container {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.music-progress-container span {
+  color: var(--muted);
+  font-size: 0.6rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.music-progress-container input,
+.music-volume input {
+  width: 100%;
+  accent-color: var(--rosewood);
+  cursor: pointer;
+}
+
+.music-volume {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 65px;
+  color: var(--rosewood);
+}
+
+.music-hide {
+  background: transparent;
+  color: var(--rosewood);
+  font-size: 1.3rem;
+}
+
+.music-show {
+  position: fixed;
+  z-index: 100;
+  bottom: 25px;
+  left: 25px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--rosewood);
+  color: var(--white);
+  font-size: 1.3rem;
+  box-shadow: var(--shadow-soft);
+}
+
+/* =========================================
+   18. GALLERY LIGHTBOX
+========================================= */
+
+.lightbox {
+  position: fixed;
+  z-index: 2000;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  padding: 30px;
+  background: rgba(48, 24, 36, 0.94);
+  backdrop-filter: blur(10px);
+}
+
+.lightbox-content {
+  max-width: 650px;
+  width: 100%;
+  text-align: center;
+}
+
+.lightbox-content img {
+  max-height: 75vh;
+  max-height: 75svh;
+  width: 100%;
+  object-fit: contain;
+  border: 8px solid var(--white);
+  border-radius: 8px;
+}
+
+.lightbox-content p {
+  margin-top: 18px;
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-style: italic;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  color: var(--white);
+  background: transparent;
+  font-size: 2.5rem;
+  transition: var(--transition);
+}
+
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  color: var(--dusty-rose);
+  transform: scale(1.15);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+}
+
+/* =========================================
+   19. CURSOR EFFECTS
+========================================= */
+
+.cursor-effects {
+  position: fixed;
+  z-index: 3000;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.cursor-heart {
+  position: absolute;
+  color: var(--rosewood);
+  font-size: 17px;
+  pointer-events: none;
+  animation: cursorHeart 1s ease-out forwards;
+}
+
+@keyframes cursorHeart {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(0.6);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-45px) scale(1.5);
+  }
+}
+
+/* =========================================
+   20. ANIMATIONS
+========================================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   21. TABLET RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+  .section {
+    padding: 85px 6%;
+  }
+
+  .scrapbook-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .flip-card-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .polaroid:nth-child(n) {
+    margin-top: 0;
+  }
+}
+
+/* =========================================
+   22. MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+
+  .section {
+    padding: 75px 6%;
+  }
+
+  .section-heading {
+    margin-bottom: 38px;
+  }
+
+  .section-heading h2 {
+    font-size: 2.2rem;
+  }
+
+  .section-heading p {
+    font-size: 0.85rem;
+  }
+
+  /* Welcome */
+
+  .welcome-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .welcome-subtitle {
+    font-size: 0.65rem;
+  }
+
+  .envelope {
+    transform: scale(0.85);
+  }
+
+  .decoration-one {
+    left: 5%;
+  }
+
+  .decoration-two {
+    left: 5%;
+  }
+
+  .decoration-three {
+    right: 5%;
+  }
+
+  /* Hero */
+
+  .hero-section {
+    min-height: 90vh;
+    min-height: 90svh;
+    padding: 80px 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.7rem;
+  }
+
+  .hero-description {
+    font-size: 0.9rem;
+  }
+
+  /* Message */
+
+  .message-card {
+    padding: 35px 25px;
+  }
+
+  .message-greeting {
+    font-size: 1.4rem;
+  }
+
+  .birthday-message {
+    font-size: 0.9rem;
+  }
+
+  /* Gallery */
+
+  .scrapbook-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 14px;
+  }
+
+  .polaroid {
+    padding: 8px 8px 30px;
+  }
+
+  .polaroid p {
+    font-size: 0.7rem;
+    bottom: 5px;
+  }
+
+  .polaroid:nth-child(1) {
+    transform: rotate(-3deg);
+  }
+
+  .polaroid:nth-child(2) {
+    transform: rotate(3deg);
+  }
+
+  .polaroid:nth-child(3) {
+    transform: rotate(2deg);
+  }
+
+  .polaroid:nth-child(4) {
+    transform: rotate(-3deg);
+  }
+
+  .polaroid:nth-child(5) {
+    transform: rotate(-2deg);
+  }
+
+  .polaroid:nth-child(6) {
+    transform: rotate(3deg);
+  }
+
+  /* Flip cards */
+
+  .flip-card-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .flip-card {
+    height: 210px;
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    padding: 15px;
+  }
+
+  .flip-card-front h3 {
+    font-size: 1.05rem;
+  }
+
+  .flip-card-back p {
+    font-size: 0.85rem;
+  }
+
+  .card-icon {
+    font-size: 2rem;
+  }
+
+  /* Quiz */
+
+  .quiz-card {
+    padding: 25px 20px;
+  }
+
+  .quiz-content h3 {
+    font-size: 1.35rem;
+  }
+
+  .quiz-option {
+    font-size: 0.82rem;
+    padding: 14px;
+  }
+
+  /* Cake */
+
+  .birthday-cake {
+    transform: scale(0.85);
+    margin: 0 0 20px;
+  }
+
+  .cake-message {
+    font-size: 1.2rem;
+  }
+
+  /* Fortune */
+
+  .fortune-message {
+    padding: 25px 20px;
+  }
+
+  .fortune-message p {
+    font-size: 1.2rem;
+  }
+
+  /* Letter */
+
+  .letter-envelope {
+    height: 280px;
+  }
+
+  .letter-paper {
+    height: 255px;
+    padding: 18px;
+  }
+
+  .letter-content p {
+    font-size: 0.75rem;
+  }
+
+  .letter-envelope.open .letter-paper {
+    transform: translateY(-120px);
+  }
+
+  /* Secret */
+
+  .secret-card {
+    padding: 30px 20px;
+  }
+
+  .secret-form h3,
+  .secret-content h3 {
+    font-size: 1.4rem;
+  }
+
+  /* Final */
+
+  .final-content h2 {
+    font-size: 2.7rem;
+  }
+
+  .final-content p {
+    font-size: 0.9rem;
+  }
+
+  /* Music player */
+
+  .music-player {
+    left: 10px;
+    bottom: 10px;
+    width: calc(100% - 20px);
+    padding: 9px 12px;
+    gap: 8px;
+  }
+
+  .music-toggle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .music-volume {
+    display: none;
+  }
+
+  .music-show {
+    left: 15px;
+    bottom: 15px;
+  }
+
+  /* Lightbox */
+
+  .lightbox {
+    padding: 15px;
+    gap: 8px;
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    font-size: 1.8rem;
+  }
+
+  .lightbox-close {
+    top: 15px;
+    right: 18px;
+  }
+}
+
+/* =========================================
+   23. REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =========================================
+   24. TOUCH DEVICE
+========================================= */
+
+@media (hover: none) {
+  .polaroid:hover {
+    transform: none;
+  }
+
+  .polaroid:hover img {
+    transform: none;
+  }
+
+  .flip-card:hover .flip-card-inner {
+    transform: none;
+  }
+}
+
+/* Animasi ketika lilin ditiup */
+.flame.extinguished {
+  opacity: 0;
+  transform: translateY(-18px) scale(0.3);
+  box-shadow: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Animasi amplop pembuka */
+.envelope.open {
+  transform: scale(1.05);
+  transition: transform 0.4s ease;
+}
