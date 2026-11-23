@@ -1809,11 +1809,119 @@ input:focus-visible {
   opacity: 0;
   transform: translateY(-18px) scale(0.3);
   box-shadow: none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
 }
 
 /* Animasi amplop pembuka */
 .envelope.open {
   transform: scale(1.05);
   transition: transform 0.4s ease;
+}
+
+/* =========================================
+   INTERACTIVE PREMIUM EFFECTS
+========================================= */
+
+/* Scroll reveal */
+.section-title,
+.polaroid,
+.flip-card,
+.quiz-container,
+.birthday-cake,
+.fortune-container {
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.section-title:not(.revealed),
+.polaroid:not(.revealed),
+.flip-card:not(.revealed),
+.quiz-container:not(.revealed),
+.birthday-cake:not(.revealed),
+.fortune-container:not(.revealed) {
+  opacity: 0;
+  transform: translateY(25px);
+}
+
+.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Music vinyl */
+.music-vinyl.playing {
+  animation: vinylSpin 4s linear infinite;
+}
+
+@keyframes vinylSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Shake animation */
+.shake {
+  animation: inputShake 0.4s ease;
+}
+
+@keyframes inputShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20%,
+  60% {
+    transform: translateX(-7px);
+  }
+
+  40%,
+  80% {
+    transform: translateX(7px);
+  }
+}
+
+/* Quiz buttons */
+.quiz-option {
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.quiz-option:not(:disabled):hover {
+  transform: translateY(-3px);
+}
+
+/* Gallery counter */
+#lightboxCounter {
+  display: block;
+  margin-top: 12px;
+  text-align: center;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* Cursor effects */
+#cursorEffects {
+  pointer-events: none;
+}
+
+/* Confetti */
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .section-title:not(.revealed),
+  .polaroid:not(.revealed),
+  .flip-card:not(.revealed),
+  .quiz-container:not(.revealed),
+  .birthday-cake:not(.revealed),
+  .fortune-container:not(.revealed) {
+    transform: translateY(15px);
+  }
 }
